@@ -9,5 +9,6 @@ public interface DemoService {
 	List<Demo> searchDemoAll();
 	Demo searchDemoById(Integer devNo);
 	boolean insertDemo(Demo demo);
-	
+	List<Demo> searchDemoByName(String name);
+	List<Demo> searchDemoByAgeGreater(Integer age);
 }

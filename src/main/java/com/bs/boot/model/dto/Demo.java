@@ -28,6 +28,7 @@ public class Demo {
 	public DemoEntity convert() {
 		String devLang=this.devLang!=null?String.join(",",this.devLang):"";
 		return DemoEntity.builder()
+				.devNo(devNo)
 				.devAge(devAge)
 				.devEmail(devEmail)
 				.devGender(devGender)

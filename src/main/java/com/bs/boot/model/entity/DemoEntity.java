@@ -2,6 +2,7 @@ package com.bs.boot.model.entity;
 
 import com.bs.boot.model.dto.Demo;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -24,17 +25,24 @@ import lombok.NoArgsConstructor;
 public class DemoEntity {
 	@Id
 	@GeneratedValue(generator = "seqDevNo", strategy = GenerationType.SEQUENCE)
+	@Column(name = "DEVNO")
 	private Integer devNo;
+	@Column(name = "DEVNAME")
 	private String devName;
+	@Column(name = "DEVAGE")
 	private Integer devAge;
+	@Column(name = "DEVEMAIL")
 	private String devEmail;
+	@Column(name = "DEVGENDER")
 	private String devGender;
+	@Column(name = "DEVLANG")
 	private String devLang;
 	
 	
 	public Demo convert() {
 		String[] devLang=this.devLang!=null?this.devLang.split(","):null;
 		return Demo.builder()
+				.devNo(devNo)
 				.devAge(devAge)
 				.devEmail(devEmail)
 				.devGender(devGender)
