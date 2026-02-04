@@ -3,6 +3,7 @@ package com.bs.boot
 
 import java.sql.Date;
 
+import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,6 +13,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 public class Member{
+	@NotEmpty(message="")
 	private String userId;
 	private String password;
 	private String name;

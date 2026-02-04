@@ -1,0 +1,4 @@
+INSERT INTO NOTICE_JK VALUES(SEQ_NOTICE_NO_JK.NEXTVAL, '공지사항테스트1', 'admin', '공지공지', DEFAULT, default);
+INSERT INTO NOTICE_JK VALUES(SEQ_NOTICE_NO_JK.NEXTVAL, '공지사항테스트2', 'abcde', '프로젝트준비', DEFAULT, default);
+INSERT INTO NOTICE_JK VALUES(SEQ_NOTICE_NO_JK.NEXTVAL, '공지사항테스트3', 'admin', '언제하지', DEFAULT, default);
+INSERT INTO NOTICE_JK VALUES(SEQ_NOTICE_NO_JK.NEXTVAL, '공지사항테스트4', 'admin', '뭐하지', DEFAULT, default);
