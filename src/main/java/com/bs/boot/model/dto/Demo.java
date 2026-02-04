@@ -1,5 +1,7 @@
 package com.bs.boot.model.dto;
 
+import com.bs.boot.model.entity.DemoEntity;
+
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
@@ -21,5 +23,16 @@ public class Demo {
 	private String devGender;
 	private String[] devLang;
 	@Size(min = 2, message = "이름은 두글자 이상")
-	private String devname;
+	private String devName;
+	
+	public DemoEntity convert() {
+		String devLang=this.devLang!=null?String.join(",",this.devLang):"";
+		return DemoEntity.builder()
+				.devAge(devAge)
+				.devEmail(devEmail)
+				.devGender(devGender)
+				.devLang(devLang)
+				.devName(devName)
+				.build();
+	}
 }

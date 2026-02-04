@@ -26,27 +26,22 @@ import lombok.RequiredArgsConstructor;
 public class TestController {
 	private final ApplicationEventPublisher publisher;
 	
-	@GetMapping("/")
-	public String index() {
-//		return "나의 첫 api서비스";
-		JKLoveEvent jklove=new JKLoveEvent("이벤트 생성!");
-		publisher.publishEvent(jklove);
-		
-		return "index";
-	}
-	
-	@PostMapping("/demo")
-	@ResponseBody
-	public List<Map<String,String>> insertDemo(
-			@Valid @RequestBody Demo demo,
-			BindingResult bindResult){
-		if(bindResult.hasErrors()) {
-			List<Map<String,String>> responseData=bindResult.getFieldErrors()
-					.stream().map(err->Map.of("result","저장실패","field",err.getField(),
-							"message",err.getDefaultMessage())).toList();
-			return responseData;
-		}else {
-			return List.of(Map.of("result","저장성공"));
-		}
-	}
+	/*
+	 * @GetMapping("/") public String index() { // return "나의 첫 api서비스"; JKLoveEvent
+	 * jklove=new JKLoveEvent("이벤트 생성!"); publisher.publishEvent(jklove);
+	 * 
+	 * return "index"; }
+	 */
+	/*
+	 * @PostMapping("/demo")
+	 * 
+	 * @ResponseBody public List<Map<String,String>> insertDemo(
+	 * 
+	 * @Valid @RequestBody Demo demo, BindingResult bindResult){
+	 * if(bindResult.hasErrors()) { List<Map<String,String>>
+	 * responseData=bindResult.getFieldErrors()
+	 * .stream().map(err->Map.of("result","저장실패","field",err.getField(),
+	 * "message",err.getDefaultMessage())).toList(); return responseData; }else {
+	 * return List.of(Map.of("result","저장성공")); } }
+	 */
 }
