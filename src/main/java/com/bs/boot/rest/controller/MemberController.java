@@ -27,6 +27,9 @@ import com.bs.boot.model.dto.Demo;
 import com.bs.boot.rest.model.dto.MemberDTO;
 import com.bs.boot.rest.model.service.MemberService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.validation.Valid;
 
 @RestController("ApiMemberController")
@@ -67,7 +70,13 @@ public class MemberController {
 		}
 	}
 	
-	@PostMapping
+	
+	@Operation(summary="회원을 저장",description = "회원정보를 json으로 전달받아 저장")
+	@ApiResponses(value= {
+			@ApiResponse(responseCode = "201", description = "저장성공"),
+			@ApiResponse(responseCode = "422", description = "잘못된 파라미터값")
+	})
+	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity saveMember(@Valid @RequestBody MemberDTO m, BindingResult bindResult) {
 		if (bindResult.hasErrors()) {
 			List<Map<String, String>> paramErrors=bindResult.getFieldErrors().stream().map(err->Map.of("field",err.getField(),"message",err.getDefaultMessage())).toList();

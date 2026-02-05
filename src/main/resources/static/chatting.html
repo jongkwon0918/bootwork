@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>채팅화면</title>
+<script>
+	const userId=prompt("사용할 이름");
+</script>
+<script src="/js/chatting.js"></script>
+<style>
+	#chat-container{
+		height:400px;
+		overflow-y:scroll;
+		border:5px dotted magenta;
+	}
+	.msgcontainer{
+		display:flex;
+	}
+	.left{
+		justify-content: start;
+	}
+	.right{
+		justify-content: end; 
+	}
+	.alertContainer{
+		border:2px solid lime;
+		display:flex;
+		justify-content: center;
+	}
+</style>
+</head>
+<body>
+	<h2>채팅!!</h2>
+	<input type="text" id="msg"><button id="sendBtn">전송</button>
+	<div id="chat-container"></div>
+	<script>
+		sendBtn.addEventListener("click", e=>{
+			const msgData=msg.value;
+			server.send(new Message("msg",userId,"",msgData,"").convert());
+		})
+	</script>
+</body>
+</html>
