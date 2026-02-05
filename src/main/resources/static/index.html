@@ -82,8 +82,22 @@
 		</div>
 		<button id="savebtn">저장</button>
 	</div>
+	
+	<input type="file" id="upfile" multiple="multiple"><button id="uploadBtn">업로드</button>
 	<div id="container"></div>
 	<script>
+		uploadBtn.addEventListener("click",async e=>{
+			const formData=new FormData();
+			const uploadFile= upfile.files;
+			for(const file of upFile.files){
+				formData.append("upfile", uploadFile);
+			}
+			const response=await fetch("/api/members/upload",{
+				method:"post",
+				body:formData
+			});
+		});
+	
 		savebtn.addEventListener("click", async e=>{
 			const demo={};
 			const lang=[];
