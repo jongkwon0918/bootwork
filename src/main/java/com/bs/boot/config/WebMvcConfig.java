@@ -4,6 +4,7 @@ import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -44,7 +45,29 @@ public class WebMvcConfig implements WebMvcConfigurer{
 		registy.setOrder(1);
 		return registy;
 	}
+
+	//cors허용하기
+	@Override
+	public void addCorsMappings(CorsRegistry registry) {
+		//cors 예외를 등록해줌
+		registry.addMapping("/**").allowedOrigins("*");
+	}
+	
+	
 	
 	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 

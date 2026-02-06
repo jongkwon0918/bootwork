@@ -2,12 +2,15 @@ package com.bs.boot.rest.model.service;
 
 import java.util.List;
 
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.bs.boot.rest.model.dto.MemberDTO;
 import com.bs.boot.rest.model.entity.MemberEntity;
 import com.bs.boot.rest.model.repository.MemberRepository;
+import com.bs.boot.security.token.JwtUtils;
 
 import lombok.RequiredArgsConstructor;
 
@@ -16,7 +19,8 @@ import lombok.RequiredArgsConstructor;
 public class MemberServiceImpl implements MemberService{
 	
 	private final MemberRepository repository;
-	
+	private final JwtUtils jwtUtils;
+	private final BCryptPasswordEncoder pwEncoder;
 	@Override
 	public MemberDTO searchMemberById(String id) {
 		return repository.findById(id).orElseThrow().convert();
@@ -54,6 +58,17 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public void deleteMember(String id) {
 		repository.deleteById(id);
+	}
+	
+	@Override
+	public String loginToken(MemberDTO m) {
+		// TODO Auto-generated method stub
+		MemberDTO loginMember= repository.findById(m.getUserId()).orElseThrow(
+				()->{throw new BadCredentialsException("인증실패");}).convert();
+		if (!pwEncoder.matches(m.getPassword(), loginMember.getPassword())) {
+			throw new BadCredentialsException("인증실패");
+		}
+		return jwtUtils.generateToken(loginMember);
 	}
 	
 }

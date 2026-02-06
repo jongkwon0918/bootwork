@@ -31,7 +31,7 @@ public class MemberEntity {
 		return MemberDTO.builder()
 				.userId(userId)
 				.password(password)
-				.userName(userName)
+				.name(userName)
 				.age(age)
 				.gender(gender)
 				.phone(phone)
